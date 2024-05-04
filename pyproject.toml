@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "ziggle-ai"
+version = "0.1.0"
+description = ""
+authors = ["inthree3"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+python-dotenv = "^1.0.1"
+ipykernel = "^6.29.4"
+openai = "^1.25.1"
+pandas = "^2.2.2"
+torchtext = "^0.18.0"
+openpyxl = "^3.1.2"
+tiktoken = "^0.6.0"
+pymongo = "^4.7.1"
+fastapi = "^0.111.0"
+pydantic-settings = "^2.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
