@@ -11,6 +11,7 @@ import os
 load_dotenv(override=True)
 # Create a new client and connect to the server
 client = MongoClient(os.getenv('MONGODB_URI'), server_api=ServerApi('1'))
+client.admin.command("ping")
 
 # %%
 database=client["ziggle_db"]
