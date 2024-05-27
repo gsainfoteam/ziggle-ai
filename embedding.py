@@ -7,7 +7,6 @@ import pandas as pd
 load_dotenv(override=True)
 client=OpenAI()
 enc=tiktoken.get_encoding("cl100k_base")
-df=pd.read_excel("./data/data_processed.xlsx", engine="openpyxl")
 # %%
 def get_embedding(input):
     encode=enc.encode(input)
@@ -22,11 +21,12 @@ def get_embedding(input):
     return embedding.data[0].embedding
 # %%
 if __name__ == "__main__":
+    df=pd.read_excel("./data/data_processed.xlsx", engine="openpyxl")
     df["body_embedded"]=df["body"].apply(get_embedding)
     df.head()
 # %%
-print(type(df["body_embedded"][0]))
+    print(type(df["body_embedded"][0]))
 # %%
-df.to_excel("./data/data_processed.xlsx", index=False)
+    df.to_excel("./data/data_processed.xlsx", index=False)
 
 # %%
