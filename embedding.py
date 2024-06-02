@@ -16,8 +16,7 @@ def get_embedding(input):
 
     embedding=client.embeddings.create(
             model="text-embedding-3-small",
-            input=input,
-            verify_ssl=False
+            input=input
         )
     return embedding.data[0].embedding
 # %%
