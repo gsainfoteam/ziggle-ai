@@ -21,12 +21,15 @@ def get_embedding(input):
     return embedding.data[0].embedding
 # %%
 if __name__ == "__main__":
-    df=pd.read_excel("./data/data_processed.xlsx", engine="openpyxl")
+    df=pd.read_excel("./data/formatted_notice.xlsx", engine="openpyxl")
+# %%
     df["body_embedded"]=df["body"].apply(get_embedding)
     df.head()
 # %%
-    print(type(df["body_embedded"][0]))
+    # print(type(df["body_embedded"][0]))
 # %%
-    df.to_excel("./data/data_processed.xlsx", index=False)
+    df.to_excel("./data/formatted_embedded_notice.xlsx", index=False)
 
+# %%
+df.head()
 # %%
