@@ -1,28 +1,20 @@
 # %%
-import torchtext
+import emoji
+import re
 import pandas as pd
 
-df=pd.read_excel("./data/data_processed.xlsx", engine="openpyxl")
-df.head()
-# %% step1: tag 제거
-def tag_processing(df) -> list[str]:
-    if type(df)==pd.core.frame.DataFrame:
-        body_list=df.body.to_list()
-    custom_replacement=torchtext.data.custom_replace([(r'<(?!\/?strong\s*\/?)[^>]+>', '')])
-    body_list=list(custom_replacement(body_list))
+df=pd.read_excel("./data/formatted_notice.xlsx", engine="openpyxl")
+# %% step1: delete tags except <strong>
+def tag_processing(body: str) -> str:
+    return re.sub(r'<(?!\/?strong\s*\/?)[^>]+>', '', body)
 
-    columns=df.columns.tolist()
-    df_matrix=[0 for i in range(len(columns))]
+# %% step2: demojize
+def demojize(body: str) -> str:
+    return emoji.demojize(body)
 
-    for i in range(len(columns)):
-        col=columns[i]
-        if col=="body":
-            df_matrix[i]=body_list
-            continue
-        
-        df_matrix[i]=df[col].to_list()
-    return df_matrix
-# %% check whether tag_processing works well
-df_matrix=tag_processing(df)
-df_matrix[1][:5]
+# %%
+if __name__=="__main__":
+    df["body"]=df["body"].apply(tag_processing)
+    df["body"]=df["body"].apply(demojize)
+    df.to_excel("./data/formatted_notice.xlsx", index=False)
 # %%
