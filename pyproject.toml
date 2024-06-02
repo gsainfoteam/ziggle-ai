@@ -11,12 +11,12 @@ python-dotenv = "^1.0.1"
 ipykernel = "^6.29.4"
 openai = "^1.25.1"
 pandas = "^2.2.2"
-torchtext = "^0.18.0"
 openpyxl = "^3.1.2"
 tiktoken = "^0.6.0"
 pymongo = "^4.7.1"
 fastapi = "^0.111.0"
 pydantic-settings = "^2.2.1"
+emoji = "^2.12.1"
 
 
 [build-system]
