@@ -20,6 +20,8 @@ data_df=pd.read_excel('./data/data.xlsx', index_col=0)
 notice_df=pd.read_excel('./data/notice.xlsx')
 tag_df=pd.read_excel('./data/tag.xlsx')
 notice_to_tag_df=pd.read_excel('./data/notice_to_tag.xlsx')
+user_df=pd.read_excel('./data/user.xlsx')
+formatted_notice_df=pd.read_excel('./data/formatted_notice.xlsx')
 # %%
 merged_df=pd.merge(content_df, notice_df, left_on="notice_id", right_on="id", suffixes=('_content', '_notice'))
 # %%
@@ -31,7 +33,11 @@ merged_df=pd.merge(merged_df[merged_df["lang"]=="ko"], langs_df, on="notice_id",
 merged_df.drop(columns=["id_notice", "id_content", "created_at_content", "lang_drop", "updated_at", "deleted_at"], inplace=True)
 merged_df.rename(columns={"notice_id": "id", "created_at_notice": "createdAt", "author_id": "author_uuid", "lang": "langs", "current_deadline": "currentDeadline"}, inplace=True)
 # %%
-merged_df.head()
+user_df.drop(columns=["created_at", "consent"], inplace=True)
 # %%
-# merged_df.to_excel('./data/formatted_notice.xlsx', index=False)
+formatted_notice_df=pd.merge(formatted_notice_df, user_df, left_on="author_uuid", right_on="uuid")
+# %%
+formatted_notice_df.rename({"name": "author_name"}, axis=1, inplace=True)
+# %%
+#formatted_notice_df.to_excel('./data/formatted_notice.xlsx', index=False)
 # %%
