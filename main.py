@@ -18,7 +18,7 @@ def get_settings():
 
 @app.get('/')
 async def root():
-    return {"message": "Hello FastAPI"}
+    return {"message": "Ziggle-ai backend is running!"}
 
 @app.post("/mute_detection")
 def mute_check(body_query: DetectionRequest):
