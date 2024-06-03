@@ -29,7 +29,4 @@ if __name__ == "__main__":
     # print(type(df["body_embedded"][0]))
 # %%
     df.to_excel("./data/formatted_embedded_notice.xlsx", index=False)
-
-# %%
-df.head()
 # %%
