@@ -37,7 +37,8 @@ user_df.drop(columns=["created_at", "consent"], inplace=True)
 # %%
 formatted_notice_df=pd.merge(formatted_notice_df, user_df, left_on="author_uuid", right_on="uuid")
 # %%
+formatted_notice_df.drop(columns=["uuid"], inplace=True)
 formatted_notice_df.rename({"name": "author_name"}, axis=1, inplace=True)
 # %%
-#formatted_notice_df.to_excel('./data/formatted_notice.xlsx', index=False)
+formatted_notice_df.to_excel('./data/formatted_notice.xlsx', index=False)
 # %%
