@@ -38,5 +38,3 @@ if __name__=="__main__":
         collection.insert_one(row_dict)
 
 # %%
-len(row_dict["body_embedded"])
-# %%
