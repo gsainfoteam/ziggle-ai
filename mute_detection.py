@@ -92,7 +92,9 @@ def similar_notices(query_body):
         }
     ]
     results=collection.aggregate(pipeline)
-    return list(results)
+    df = pd.DataFrame(results)
+    df = df.replace(np.nan, '', regex=True)
+    return df.to_dict('records')
 # %%
 if __name__=="__main__":
     # TEST
