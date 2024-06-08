@@ -15,6 +15,9 @@
 #   views: number; #notice_df - "views"
 # }
 import pandas as pd
+import json
+import data_processing
+# %%
 content_df=pd.read_excel('./data/content.xlsx')
 data_df=pd.read_excel('./data/data.xlsx', index_col=0)
 notice_df=pd.read_excel('./data/notice.xlsx')
@@ -41,4 +44,34 @@ formatted_notice_df.drop(columns=["uuid"], inplace=True)
 formatted_notice_df.rename({"name": "author_name"}, axis=1, inplace=True)
 # %%
 formatted_notice_df.to_excel('./data/formatted_notice.xlsx', index=False)
+# %% TODO: Hugging Face Data Preparation
+df=pd.read_excel('./data/formatted_notice.xlsx')
+finetune_df=df[["body", "createdAt", "deadline"]]
+finetune_df.head()
+
+# %%
+# finetune_df=df[["body", "createdAt", "deadline"]]
+# finetune_df.head()
+# deadline_response=data_processing.extract_deadline(finetune_df[["body", "createdAt"]].iloc[3])
+# target_row=finetune_df[["body", "createdAt", "deadline"]].iloc[3]
+# print(f"공지 게시 일자: {target_row["createdAt"]}")
+# print(f"공지 본문: target_row["body"]")
+# print(f"등록된 마감 기한: {target_row["deadline"]}")
+# print(f"AI가 추출한 마감 기한: {deadline_response}")
+
+# %%
+df["AI_deadline"]=df.apply(lambda row: data_processing.extract_deadline(row["body"], row["createdAt"]), axis=1)
+# %%
+df[['body', 'createdAt', 'AI_deadline']].to_csv('./data/deadline-detection-finetune.csv', index=False)
+# %%
+finetune_df=pd.read_csv('./data/deadline-detection-finetune.csv')
+finetune_df.head()
+# %%
+finetune_refine_df=pd.read_csv('./data/deadline-detection-finetune-refine.csv')
+# %%
+finetune_refine_df["AI_deadline_refine"].dropna()
+# %%
+df["deadline"].dropna()
+# %%
+df
 # %%
