@@ -61,9 +61,9 @@ def mute_detection(query_body):
     results=collection.aggregate(pipeline)
 
     for result in results:
-        if result["score"]>=0.95:
+        if result["score"]>=0.90:
             return {"mute":True, "mute_content":{"title": result["title"], "body": result["body"]}}
-        elif result["score"]<0.95:
+        elif result["score"]<0.90:
             return {"mute":False}
         
 def similar_notices(query_body):
@@ -93,7 +93,9 @@ def similar_notices(query_body):
         }
     ]
     results=collection.aggregate(pipeline)
-    return list(results)
+    df = pd.DataFrame(results)
+    df = df.replace(np.nan, '', regex=True)
+    return df.to_dict('records')
 # %%
 if __name__=="__main__":
     # TEST
