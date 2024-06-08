@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 from pprint import pprint
 import embedding
+import data_processing
 import os
 
 load_dotenv(override=True)
@@ -107,9 +108,8 @@ if __name__=="__main__":
     제 카톡 개인 메세지로 문의해주세요!
     ※ 학번을 아직 발급받지 못한 신입생 여러분들은 학번을 발급받고 신청해주세요!
     """
-    # mute_result=mute_detection(query_body)
-    # print(mute_result)
-    similar_result=similar_notices(query_body)
-    print(similar_result)
+    mute_result=mute_detection(query_body)
+    mute_result["mute_content"]["body"]=data_processing.revert_demojize(mute_result["mute_content"]["body"])
+    print(mute_result)
 
 # %%

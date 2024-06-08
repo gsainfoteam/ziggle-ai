@@ -12,6 +12,10 @@ def tag_processing(body: str) -> str:
 def demojize(body: str) -> str:
     return emoji.demojize(body)
 
+# %% step3: revert demojized emoji
+def revert_demojize(body: str) -> str:
+    return emoji.emojize(body)
+
 # %%
 if __name__=="__main__":
     df["body"]=df["body"].apply(tag_processing)
