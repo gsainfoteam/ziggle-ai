@@ -37,11 +37,11 @@ def similar_notices(body_query: DetectionRequest):
     return result
 
 @app.post("/upload_notice_to_mongodb")
-def upload_notice_to_vector_index(target_dict: dict):
+def upload_notice_to_vector_index(target_dict: DetectionRequest):
     return mongodb.insert_mongodb(target_dict)
 
 @app.post("/insert_mute_edge_case")
-def insert_mute_edge_case(mute_failed_case: dict):
+def insert_mute_edge_case(mute_failed_case: MuteEdgeCase):
     return mute_validation.insert_edge_case(mute_failed_case)
 # %%
 app.include_router(router, prefix="/api")
