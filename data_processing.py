@@ -13,8 +13,6 @@ OPENAI_API_KEY=os.getenv("OPENAI_API_KEY_DEADLINE_DETECTION")
 # %%
 client=OpenAI(api_key=OPENAI_API_KEY)
 
-# %%
-df=pd.read_excel("./data/formatted_notice.xlsx", engine="openpyxl")
 # %% step1: delete tags except <strong>
 def tag_processing(body: str) -> str:
     return re.sub(r'<(?!\/?strong\s*\/?)[^>]+>', '', body)
@@ -52,6 +50,8 @@ def extract_deadline(body: str, createdAt: str) -> str:
 
 # %%
 if __name__=="__main__":
+    df=pd.read_excel("./data/formatted_notice.xlsx", engine="openpyxl")
+
     df["body"]=df["body"].apply(tag_processing)
     df["body"]=df["body"].apply(demojize)
     df.to_excel("./data/formatted_notice.xlsx", index=False)
