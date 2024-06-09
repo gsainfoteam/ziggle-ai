@@ -14,6 +14,11 @@ router = APIRouter()
 class DetectionRequest(BaseModel):
     body: str 
 
+class MuteEdgeCase(BaseModel):
+    source_body: str
+    result_body: str
+    similarity_score: float
+
 @lru_cache
 def get_settings():
     return config.Settings()
