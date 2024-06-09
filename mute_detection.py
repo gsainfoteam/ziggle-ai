@@ -62,6 +62,7 @@ def mute_detection(query_body):
 
     for result in results:
         if result["score"]>=0.90:
+            result["body"]=data_processing.revert_demojize(result["body"])
             return {"mute":True, "mute_content":{"title": result["title"], "body": result["body"]}}
         elif result["score"]<0.90:
             return {"mute":False}
