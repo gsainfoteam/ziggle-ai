@@ -7,6 +7,7 @@ from fastapi import FastAPI, APIRouter
 from pydantic import BaseModel
 import mute_detection
 import mongodb
+import mute_validation
 
 app=FastAPI()
 router = APIRouter()
@@ -33,6 +34,10 @@ def similar_notices(body_query: DetectionRequest):
 @app.post("/upload_notice_to_mongodb")
 def upload_notice_to_vector_index(target_dict: dict):
     return mongodb.insert_mongodb(target_dict)
+
+@app.post("/insert_mute_edge_case")
+def insert_mute_edge_case(mute_failed_case: dict):
+    return mute_validation.insert_edge_case(mute_failed_case)
 # %%
 app.include_router(router, prefix="/api")
 
