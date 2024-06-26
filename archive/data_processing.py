@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv(override=True)
-OPENAI_API_KEY=os.getenv("OPENAI_API_KEY_DEADLINE_DETECTION")
+OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
 
 # %%
 client=OpenAI(api_key=OPENAI_API_KEY)
@@ -36,6 +36,7 @@ def extract_deadline(body: str, createdAt: str) -> str:
                 {"role": "user", "content": f'## 공지의 생성 일자\n{createdAt}\n\n## 공지 본문\n{body} 이제 json 형식으로 deadline 정보를 추출해주세요.'}
             ]
         )
+    
     except Exception as e: #If the context window is exceeded, use GPT-4
         response=client.chat.completions.create(
             model="gpt-4o",
