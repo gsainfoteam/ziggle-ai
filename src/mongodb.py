@@ -5,7 +5,7 @@ from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 import numpy as np
 import pandas as pd
-import embedding
+import embedding.embedding as embedding
 import os
 
 load_dotenv(override=True)

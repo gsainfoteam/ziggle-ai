@@ -6,8 +6,9 @@ from dotenv import load_dotenv
 import numpy as np
 import pandas as pd
 from pprint import pprint
-import embedding
-import data_processing
+
+from embedding import embedding
+import archive.data_processing as data_processing
 import os
 
 load_dotenv(override=True)

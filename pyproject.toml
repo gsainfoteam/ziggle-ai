@@ -5,6 +5,10 @@ description = ""
 authors = ["inthree3"]
 readme = "README.md"
 
+packages = [
+    { include = "embedding", from = "src" }
+]
+
 [tool.poetry.dependencies]
 python = "^3.12"
 python-dotenv = "^1.0.1"
@@ -18,6 +22,8 @@ fastapi = "^0.111.0"
 pydantic-settings = "^2.2.1"
 emoji = "^2.12.1"
 
+[tool.poetry.scripts]
+start= "src.main:app"
 
 [build-system]
 requires = ["poetry-core"]
