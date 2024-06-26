@@ -30,7 +30,7 @@ def extract_deadline(body: str, createdAt: str) -> str:
         data["model"]="gpt-4o"
         response = requests.post(url, headers=headers, data=json.dumps(data), timeout=5)
 
-    return json.loads(response.json()["choices"][0]["message"]["content"])["deadline"]
+    return json.loads(response.json()["choices"][0]["message"]["content"])
     
 # %%
 if __name__ == "__main__":
