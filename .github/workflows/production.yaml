@@ -3,7 +3,7 @@ name: Build & Deploy Production
 on:
   push:
     tags:
-      - "main"
+      - main
 
 jobs:
   build:
