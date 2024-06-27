@@ -1,12 +1,12 @@
 # %%
 from functools import lru_cache
 import config
-
+# %%
 import uvicorn
 from fastapi import FastAPI, APIRouter
 from pydantic import BaseModel
 
-from deadline_detection import extract_deadline
+import deadline_detection
 # import mongodb
 # from mute_detection import mute_detection
 # from mute_validation import mute_validation

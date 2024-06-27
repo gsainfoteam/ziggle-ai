@@ -1,10 +1,14 @@
 # %%
-from openai import OpenAI
-client = OpenAI()
-
 import json
 import requests
 import time
+import os
+
+from dotenv import load_dotenv
+load_dotenv(override=True)
+from openai import OpenAI
+api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 # %%
 def extract_deadline(body: str, createdAt: str) -> str:
     url="https://api.openai.com/v1/chat/completions"

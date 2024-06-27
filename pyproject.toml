@@ -6,7 +6,7 @@ authors = ["inthree3"]
 readme = "README.md"
 
 packages = [
-    { include = "embedding", from = "src" }
+    { include = "deadline_detection", from = "src" }
 ]
 
 [tool.poetry.dependencies]
