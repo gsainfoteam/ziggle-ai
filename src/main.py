@@ -6,7 +6,7 @@ import uvicorn
 from fastapi import FastAPI, APIRouter
 from pydantic import BaseModel
 
-import deadline_detection
+from deadline_detection import extract_deadline
 # import mongodb
 # from mute_detection import mute_detection
 # from mute_validation import mute_validation
